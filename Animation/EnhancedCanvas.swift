@@ -26,7 +26,7 @@ public class EnhancedCanvas : Canvas {
             interpret(character: c, forThis: system)
         }
         self.restoreState()
-
+        
     }
     
     public func renderAnimated(system : VisualizedLindenmayerSystem, generation : Int) {
@@ -42,7 +42,7 @@ public class EnhancedCanvas : Canvas {
             
             // Change the line length
             system.currentLength = Float( Double(system.initialLength) / pow(Double(system.reduction), Double(generation)) )
-
+            
             // Move turtle to starting point
             self.translate(byX: system.x, byY: system.y) // Move turtle to starting point
         }
@@ -52,16 +52,16 @@ public class EnhancedCanvas : Canvas {
             
             // Get the index of the next character
             let index = system.word[generation].index(system.word[generation].startIndex, offsetBy: system.animationPosition)
-
+            
             // Get the next character
             let c = system.word[generation][index]
             
             // Render the character
             interpret(character: c, forThis: system)
-
+            
             // Move to next character in word
             system.animationPosition += 1
-
+            
         }
         
     }
@@ -83,11 +83,33 @@ public class EnhancedCanvas : Canvas {
         case "-":
             // Turn right
             self.rotate(by: system.angle * -1)
+        case "1":
+            //
+            guard let newColor = system.colors["1"] else {
+                return
+            }
+            self.lineColor = Color(hue: newColor.hue, saturation: newColor.saturaction, brightness: newColor.brightness, alpha: 100)
+            
+        case "2":
+            //
+            guard let newColor = system.colors["2"] else {
+                return
+            }
+            self.lineColor = Color(hue: newColor.hue, saturation: newColor.saturaction, brightness: newColor.brightness, alpha: 100)
+            
+        case "3":
+            //
+            guard let newColor = system.colors["3"] else {
+                return
+            }
+            self.lineColor = Color(hue: newColor.hue, saturation: newColor.saturaction, brightness: newColor.brightness, alpha: 100)
+            
+            
         default:
             // Do nothing for any another character in the word
             break
         }
-
+        
     }
     
 }
