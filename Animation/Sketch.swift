@@ -92,8 +92,8 @@ class Sketch : NSObject {
 
         // Set up another Koch construction
         kochConstruction = LindenmayerSystem(angle: 90,
-                                             axiom: "1F-2F-3F-3F",
-                                             rule: "1FF-F-F-F-F-F+F",
+                                             axiom: "F-F-F-F",
+                                             rule: "1FF-F-2F-F-3F-F+F",
                                              generations: 3)
         
         // Visualize this other Koch construction
