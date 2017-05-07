@@ -70,16 +70,19 @@ public class EnhancedCanvas : Canvas {
         
         // Interpret each character of the word
         switch character {
-        case "F":
+        case "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X",  "Y", "Z" :
             // Go forward while drawing a line
             self.drawLine(fromX: 0, fromY: 0, toX: system.currentLength, toY: 0)
             self.translate(byX: system.currentLength, byY: 0)
+            //print("foward")
         case "f":
             // Go forward without drawing a line
             self.translate(byX: system.currentLength, byY: 0)
+            
         case "+":
             // Turn left
             self.rotate(by: system.angle)
+            //print("turn")
         case "-":
             // Turn right
             self.rotate(by: system.angle * -1)

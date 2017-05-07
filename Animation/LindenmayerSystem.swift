@@ -4,20 +4,20 @@ public class LindenmayerSystem {
     // Set up required information
     var angle : Degrees                 // rotation amount for turtle (degrees)
     var axiom : String
-    var rule : String
+    var rules : [Character : String]
     var n : Int                         // number of times the production rule is applied
     var word : [String] = []            // the word that will be rendered
-                                        // is rendered with an animation, step by step
+    // is rendered with an animation, step by step
     
     public init(angle : Degrees,
                 axiom : String,
-                rule : String,
+                rules : [Character : String],
                 generations : Int) {
         
         // Initialize stored properties
         self.angle = angle
         self.axiom = axiom
-        self.rule = rule
+        self.rules = rules
         self.n = generations
         self.word.append(axiom)   // The first word is the axiom
         
@@ -31,7 +31,7 @@ public class LindenmayerSystem {
         // Initalize stored properties
         self.angle = system.angle
         self.axiom = system.axiom
-        self.rule = system.rule
+        self.rules = system.rules
         self.n = system.n
         self.word.append(axiom)   // The first word is the axiom
         
@@ -53,22 +53,40 @@ public class LindenmayerSystem {
                 // Inspect each character of existing word
                 for character in word[i - 1].characters {
                     
-                    if character == "F" {
+                    
+                    for (key, rule) in rules { //should loop through dictionary and append rules
                         
-                        // apply production rule, replace "old" F with new string
-                        newWord.append(rule)
-                        
-                    } else {
-                        
+                        if character == key {
+                            
+                            // apply production rule, replace "old" F with new string
+                            newWord.append(rule)
+                            //print("replace letter")
+                        }
+                        //F+F−F−F+F + F+F−F−F+F − F+F−F−F+F − F+F−F−F+F + F+F−F−F+F
                         // just copy what's in the existing word to the new word
-                        newWord.append(character)
-                        
+                        if character == "-" || character == "+" //not picking up on minus
+                        {
+                            newWord.append(character)
+                            //print("Rewrite letter")
+                        }
+                        if String(character) == "-"{
+                            newWord.append("-")
+                            print("there is a: -")
+                        }
                     }
+                    
+
+                    
+                    
+                    
+                    
+                    
                     
                 }
                 
                 // Add the re-written word to the system
                 word.append(newWord)
+                print(word)
                 
             }
             
