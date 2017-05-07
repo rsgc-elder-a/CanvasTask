@@ -67,11 +67,8 @@ public class LindenmayerSystem {
                         if character == "-" || character == "+" //not picking up on minus
                         {
                             newWord.append(character)
-                            //print("Rewrite letter")
-                        }
-                        if String(character) == "-"{
-                            newWord.append("-")
-                            print("there is a: -")
+                            print("Charicter appended \(character)")
+                            
                         }
                     }
                     
