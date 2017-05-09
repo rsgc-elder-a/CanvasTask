@@ -64,15 +64,21 @@ public class LindenmayerSystem {
                         }
                         //F+F−F−F+F + F+F−F−F+F − F+F−F−F+F − F+F−F−F+F + F+F−F−F+F
                         // just copy what's in the existing word to the new word
-                        if character == "-" || character == "+" //not picking up on minus
-                        {
-                            newWord.append(character)
-                            print("Charicter appended \(character)")
-                            
-                        }
+                        //                        if character == "-" || character == "+" //not picking up on minus
+                        //                        {
+                        //                            newWord.append(character)
+                        //                            print("Charicter appended \(character)")
+                        //
+                        //                        }
+                    }
+                    if character == "-" || character == "+" //not picking up on minus
+                    {
+                        newWord.append(character)
+                        print("Charicter appended \(character)")
+                        
                     }
                     
-
+                    
                     
                     
                     

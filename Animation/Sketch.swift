@@ -94,23 +94,22 @@ class Sketch : NSObject {
                                                       direction: 0)
 */
         // Set up another Koch construction
-        kochConstruction = LindenmayerSystem(angle: 90,
+        kochConstruction = LindenmayerSystem(angle: 60,
                                              axiom: "A",
-                                             rules: ["A":"+B-A-B+", "B": "-A+B+A-"]
-            ,
-                                             generations: 3)
+                                             rules: ["A":"+B-A-B+", "B": "-A+B+A-"],
+                                             generations: 6)
         
         // Visualize this other Koch construction
         mediumConstruction = VisualizedLindenmayerSystem(with: kochConstruction,
                                                          length: 300,
-                                                         reduction: 3,
-                                                         x: 250,
-                                                         y: 350,
+                                                         reduction: 2,
+                                                         x: 50,
+                                                         y: 200,
                                                          direction: 0,
                                                          colors: [ "1" : Colour(hue: 200, saturaction: 80, brightness: 90), "2" : Colour(hue: 0, saturaction: 80, brightness: 90), "3" : Colour(hue: 300, saturaction: 80, brightness: 90) ] )
         
         // The frame rate can be adjusted; the default is 60 fps
-        canvas.framesPerSecond = 60
+        canvas.framesPerSecond = 90
         
     }
     
@@ -118,7 +117,7 @@ class Sketch : NSObject {
     func draw() {
         
         // Render the current system
-        canvas.renderAnimated(system: mediumConstruction, generation: 2)
+        canvas.renderAnimated(system: mediumConstruction, generation: 6)
         
     }
     
