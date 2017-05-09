@@ -4,7 +4,8 @@ public class LindenmayerSystem {
     // Set up required information
     var angle : Degrees                 // rotation amount for turtle (degrees)
     var axiom : String
-    var rules : [Character : String]
+    var rules : [Character : String]    //make a random choice
+    
     var n : Int                         // number of times the production rule is applied
     var word : [String] = []            // the word that will be rendered
     // is rendered with an animation, step by step
