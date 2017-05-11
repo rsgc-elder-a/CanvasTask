@@ -11,33 +11,41 @@ import Foundation
 public class Rules {
     
     var predeceser : Character
-    var secseceser : [Int : String]
+    var probSec : [Int]
+    var secseceser : [String]
     
-    public init (predeceser : Character, secseceser : [Int : String]){
+    public init (predeceser : Character, secseceser : [String], probSec : [Int]){
         self.predeceser = predeceser
         self.secseceser = secseceser
+        self.probSec = probSec
     }
     
     
-    //NEEDS TESTING 
+    //NEEDS TESTING
     func chooseSecseceser () -> String { //this func is to choose secsescesser with proper probabilty
         var choosenSec = "" //might be problem
         var denomintor : Int = 0
-        for (number, value) in secseceser {
+        
+        
+        for number in probSec {
             denomintor += number
         }
+        
         let randomVal = arc4random_uniform(UInt32(denomintor))
-        let intRandomVal = Int(randomVal)
+        var intRandomVal = Int(randomVal)
         var count = 0
         
-        for (_, value) in secseceser {
-            if count == intRandomVal
-            {
-               choosenSec = value
+        for  number in probSec { //this will break due to un even incremenation
+            //one second though it might now 
+            
+            intRandomVal += -number //subtracks to see where it ends
+            if intRandomVal < 0 { //returns value if stumbles on randnum
+                break
             }
             count += 1
         }
-        
+        choosenSec = secseceser[count]
         return choosenSec
     }
+    
 }

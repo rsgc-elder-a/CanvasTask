@@ -4,8 +4,7 @@ public class LindenmayerSystem {
     // Set up required information
     var angle : Degrees                 // rotation amount for turtle (degrees)
     var axiom : String
-    var rules : [Character : String]    //make a random choice
-    
+    var rules : [Rules]    //make a random choice
     var n : Int                         // number of times the production rule is applied
     var word : [String] = []            // the word that will be rendered
     // is rendered with an animation, step by step
@@ -14,8 +13,8 @@ public class LindenmayerSystem {
     public init(angle : Degrees,
                 axiom : String,
                 
-                rules : [Character : String], //change to 
-                generations : Int) {
+                rules : [Rules], //change to
+        generations : Int) {
         
         // Initialize stored properties
         self.angle = angle
@@ -54,40 +53,29 @@ public class LindenmayerSystem {
                 var newWord = ""
                 
                 // Inspect each character of existing word
-                for character in word[i - 1].characters {
+                for character in word[i - 1].characters { //charicter are what we are inspecting
                     
-                    
-                    for (key, rule) in rules { //should loop through dictionary and append rules
-                        
-                        if character == key {
+                    for val in rules { //loops through rules
+                        //might want to focus on one rule
+                        for index in 0...val.probSec.count { //looks at one object and loops through rules manually
                             
-                            // apply production rule, replace "old" F with new string
-                            newWord.append(rule)
-                            //print("replace letter")
+                            if character == val.predeceser { //looks at preddiseso to replace
+                                
+                                newWord.append(val.chooseSecseceser()) //choose secsessor might not work
+                                break
+                            }
+                            
                         }
-                        //F+F−F−F+F + F+F−F−F+F − F+F−F−F+F − F+F−F−F+F + F+F−F−F+F
-                        // just copy what's in the existing word to the new word
-                        //                        if character == "-" || character == "+" //not picking up on minus
-                        //                        {
-                        //                            newWord.append(character)
-                        //                            print("Charicter appended \(character)")
-                        //
-                        //                        }
+                        
+
                     }
-                    if character == "-" || character == "+" //not picking up on minus
-                    {
+                    
+                    if character == "-" || character == "+"
+                    { //just add in word again if not working
                         newWord.append(character)
                         print("Charicter appended \(character)")
                         
                     }
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
                 }
                 
                 // Add the re-written word to the system
