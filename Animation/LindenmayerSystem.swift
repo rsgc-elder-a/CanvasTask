@@ -10,9 +10,11 @@ public class LindenmayerSystem {
     var word : [String] = []            // the word that will be rendered
     // is rendered with an animation, step by step
     
+    
     public init(angle : Degrees,
                 axiom : String,
-                rules : [Character : String],
+                
+                rules : [Character : String], //change to 
                 generations : Int) {
         
         // Initialize stored properties

@@ -18,8 +18,10 @@ public class Rules {
         self.secseceser = secseceser
     }
     
+    
+    //NEEDS TESTING 
     func chooseSecseceser () -> String { //this func is to choose secsescesser with proper probabilty
-        var choosenSec : String
+        var choosenSec = "" //might be problem
         var denomintor : Int = 0
         for (number, value) in secseceser {
             denomintor += number
@@ -35,6 +37,7 @@ public class Rules {
             }
             count += 1
         }
+        
         return choosenSec
     }
 }
