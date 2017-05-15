@@ -74,7 +74,7 @@ public class EnhancedCanvas : Canvas {
             // Go forward while drawing a line
             self.drawLine(fromX: 0, fromY: 0, toX: system.currentLength, toY: 0)
             self.translate(byX: system.currentLength, byY: 0)
-            //print("foward")
+        //print("foward")
         case "f":
             // Go forward without drawing a line
             self.translate(byX: system.currentLength, byY: 0)
@@ -82,10 +82,16 @@ public class EnhancedCanvas : Canvas {
         case "+":
             // Turn left
             self.rotate(by: system.angle)
-            //print("turn")
+        //print("turn")
         case "-":
             // Turn right
             self.rotate(by: system.angle * -1)
+            //        case "[":
+            //            // Turn right
+            //            self.saveState()
+            //        case "]":
+            //            // Turn right
+        //            self.restoreState()
         case "1":
             //
             guard let newColor = system.colors["1"] else {

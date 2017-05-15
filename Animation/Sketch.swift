@@ -94,15 +94,16 @@ class Sketch : NSObject {
                                                       direction: 0)
 */
         // Set up another Koch construction
-        var rule1 = Rules(predeceser: "F", secseceser: ["F+F","F-F", "F+++++F"], probSec: [1, 1, 2])
-        kochConstruction = LindenmayerSystem(angle: 10,
-                                             axiom: "F",
-                                             rules: [rule1],//"A":"+B-A-B+", "B": "-A+B+A-"],
-                                             generations: 4)
+        var rule1 = Rules(predeceser: "A", secseceser: ["+B-A-B+"], probSec: [1])
+        var rule2 = Rules(predeceser: "B", secseceser: ["-A+B+A-"], probSec: [1])
+        kochConstruction = LindenmayerSystem(angle: 60,
+                                             axiom: "A",
+                                             rules: [rule1, rule2],//"A":"+B-A-B+", "B": "-A+B+A-"],
+                                             generations: 6)
         
         // Visualize this other Koch construction
         mediumConstruction = VisualizedLindenmayerSystem(with: kochConstruction,
-                                                         length: 1000,
+                                                         length: 100,
                                                          reduction: 2,
                                                          x: 50,
                                                          y: 200,
@@ -118,7 +119,7 @@ class Sketch : NSObject {
     func draw() {
         
         // Render the current system
-        canvas.renderAnimated(system: mediumConstruction, generation: 4)
+        canvas.renderAnimated(system: mediumConstruction, generation: 6)
         
     }
     
