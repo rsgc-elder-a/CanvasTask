@@ -74,7 +74,7 @@ public class LindenmayerSystem {
                     if character == "-" || character == "+"
                     { //just add in word again if not working
                         newWord.append(character)
-                        print("Charicter appended \(character)")
+                        //print("Charicter appended \(character)")
                         
                     }
                 }
