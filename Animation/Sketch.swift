@@ -94,24 +94,25 @@ class Sketch : NSObject {
                                                       direction: 0)
 */
         // Set up another Koch construction
-        var rule1 = Rules(predeceser: "A", secseceser: ["+B-A-B+"], probSec: [1])
-        var rule2 = Rules(predeceser: "B", secseceser: ["-A+B+A-"], probSec: [1])
-        kochConstruction = LindenmayerSystem(angle: 60,
-                                             axiom: "A",
-                                             rules: [rule1, rule2],//"A":"+B-A-B+", "B": "-A+B+A-"],
-                                             generations: 6)
+        var rule1 = Rules(predeceser: "F", secseceser: ["F+F", "F-F", "FF"], probSec: [1, 1, 1])
+        //var rule2 = Rules(predeceser: "B", secseceser: ["-A+B+A-"], probSec: [1])
         
+        kochConstruction = LindenmayerSystem(angle: 90,
+                                             axiom: "F",
+                                             rules: [rule1],//"A":"+B-A-B+", "B": "-A+B+A-"],
+                                             generations: 4)
+        //"FF+F+F-F+F+F+FF+F-F+F+FFF-F"
         // Visualize this other Koch construction
         mediumConstruction = VisualizedLindenmayerSystem(with: kochConstruction,
-                                                         length: 100,
-                                                         reduction: 2,
+                                                         length: 1000,
+                                                         reduction: 3,
                                                          x: 50,
                                                          y: 200,
                                                          direction: 0,
                                                          colors: [ "1" : Colour(hue: 200, saturaction: 80, brightness: 90), "2" : Colour(hue: 0, saturaction: 80, brightness: 90), "3" : Colour(hue: 300, saturaction: 80, brightness: 90) ] )
         
         // The frame rate can be adjusted; the default is 60 fps
-        canvas.framesPerSecond = 90
+        canvas.framesPerSecond = 180
         
     }
     
@@ -119,7 +120,7 @@ class Sketch : NSObject {
     func draw() {
         
         // Render the current system
-        canvas.renderAnimated(system: mediumConstruction, generation: 6)
+        canvas.renderAnimated(system: mediumConstruction, generation: 4)
         
     }
     
