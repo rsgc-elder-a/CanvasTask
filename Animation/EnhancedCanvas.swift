@@ -10,6 +10,8 @@ public class EnhancedCanvas : Canvas {
     
     public func render(system : VisualizedLindenmayerSystem, generation : Int) {
         
+        // self.saveState()
+        
         // Verify that generation that was asked to be rendered actually exists
         var generation = generation
         if generation > system.n {
@@ -25,11 +27,21 @@ public class EnhancedCanvas : Canvas {
         for c in system.word[generation].characters {
             interpret(character: c, forThis: system)
         }
+        
         self.restoreState()
+        //self.restoreState()
+        
+        
+        //this delays code within it
+        let when = DispatchTime.now() + 2 // change 2 to desired number of seconds
+        DispatchQueue.main.asyncAfter(deadline: when) {
+            // Your code with delay
+        }
         
     }
     
     public func renderAnimated(system : VisualizedLindenmayerSystem, generation : Int) {
+        //self.saveState()
         
         // Verify that generation that was asked to be rendered actually exists
         var generation = generation
@@ -64,10 +76,12 @@ public class EnhancedCanvas : Canvas {
             
         }
         
+        //self.restoreState()
     }
     
     func interpret(character : Character, forThis system : VisualizedLindenmayerSystem) {
-        
+        //this delays code within it
+        // Your code with delay
         // Interpret each character of the word
         switch character {
         case "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X",  "Y", "Z" :
@@ -118,7 +132,5 @@ public class EnhancedCanvas : Canvas {
             // Do nothing for any another character in the word
             break
         }
-        
     }
-    
 }

@@ -80,19 +80,20 @@ class Sketch : NSObject {
          y: 400,
          direction: 10)
          */
-        var ruleA = Rules(predeceser: "F", secseceser: ["F+F", "F-F", "FF"], probSec: [1, 1, 1])
+        //var ruleA = Rules(predeceser: "F", secseceser: ["F+F", "F-F", "FF"], probSec: [1, 1, 1])
+        var ruleA = Rules(predeceser: "F", secseceser: ["F+F-F-F+F"], probSec: [1])
         // Set up a Koch Swirl
         kochSwirl = LindenmayerSystem(angle: 90,
                                       axiom: "F",
                                       rules: [ruleA],
-                                      generations: 4)
+                                      generations: 2)
         
         // Visualize the Koch Swirl
         mediumKochSwirl = VisualizedLindenmayerSystem(with: kochSwirl,
-                                                      length: 100,
+                                                      length: 300,
                                                       reduction: 3,
-                                                      x: 0,
-                                                      y: 0,
+                                                      x: 100,
+                                                      y: 100,
                                                       direction: 0)
         
         // Set up another Koch construction
@@ -122,9 +123,16 @@ class Sketch : NSObject {
     func draw() {
         
         // Render the current system
-        canvas.renderAnimated(system: mediumConstruction, generation: 2)
-        canvas.renderAnimated(system: mediumKochSwirl, generation: 4)
         
+        //canvas.saveState()
+        
+        //canvas.renderAnimated(system: mediumKochSwirl, generation: 4)
+        canvas.render(system: mediumKochSwirl, generation: 2)
+        
+        //canvas.restoreState()
+        
+        //canvas.render(system: mediumConstruction, generation: 3)
+        //canvas.renderAnimated(system: mediumConstruction, generation: 3)
     }
     
     // Respond to the mouseDown event
