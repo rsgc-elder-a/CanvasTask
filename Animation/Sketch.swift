@@ -98,6 +98,9 @@ class Sketch : NSObject {
         
         
         
+        
+        
+        
         // Set up another Koch construction
         var rule1 = Rules(predeceser: "F", secseceser: ["F+F-F-F+F"], probSec: [1])
         //var rule2 = Rules(predeceser: "B", secseceser: ["-A+B+A-"], probSec: [1])
