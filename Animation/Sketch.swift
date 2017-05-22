@@ -81,7 +81,7 @@ class Sketch : NSObject {
          direction: 10)
          */
         //var ruleA = Rules(predeceser: "F", secseceser: ["F+F", "F-F", "FF"], probSec: [1, 1, 1])
-        var ruleA = Rules(predeceser: "F", secseceser: ["F+F-F-F+F"], probSec: [1])
+        var ruleA = Rules(predeceser: "F", secseceser: ["2F+F-F-F+F"], probSec: [1])
         // Set up a Koch Swirl
         kochSwirl = LindenmayerSystem(angle: 90,
                                       axiom: "F",
@@ -90,29 +90,30 @@ class Sketch : NSObject {
         
         // Visualize the Koch Swirl
         mediumKochSwirl = VisualizedLindenmayerSystem(with: kochSwirl,
-                                                      length: 300,
+                                                      length: 100,
                                                       reduction: 3,
-                                                      x: 100,
-                                                      y: 100,
-                                                      direction: 0)
+                                                      x: 50,
+                                                      y: 50,
+                                                      direction: 0,
+                                                      colors: [ "1" : Colour(hue: 200, saturaction: 80, brightness: 90), "2" : Colour(hue: 0, saturaction: 80, brightness: 90), "3" : Colour(hue: 300, saturaction: 80, brightness: 90) ])
         
         
         
         // Set up another Koch construction
-        var rule1 = Rules(predeceser: "F", secseceser: ["F+F-F-F+F"], probSec: [1])
-        //var rule2 = Rules(predeceser: "B", secseceser: ["-A+B+A-"], probSec: [1])
+        var rule1 = Rules(predeceser: "A", secseceser: ["+B-A-B+"], probSec: [1])
+        var rule2 = Rules(predeceser: "B", secseceser: ["-A+B+A-"], probSec: [1])
         
-        kochConstruction = LindenmayerSystem(angle: 90,
-                                             axiom: "F",
-                                             rules: [rule1],
-                                             generations: 2)
+        kochConstruction = LindenmayerSystem(angle: 60,
+                                             axiom: "A",
+                                             rules: [rule1, rule2],
+                                             generations: 6)
         
         // Visualize this other Koch construction
         mediumConstruction = VisualizedLindenmayerSystem(with: kochConstruction,
-                                                         length: 50,
+                                                         length: 500,
                                                          reduction: 3,
-                                                         x: 200,
-                                                         y: 200,
+                                                         x: 100,
+                                                         y: 100,
                                                          direction: 0,
                                                          colors: [ "1" : Colour(hue: 200, saturaction: 80, brightness: 90), "2" : Colour(hue: 0, saturaction: 80, brightness: 90), "3" : Colour(hue: 300, saturaction: 80, brightness: 90) ] )
         
@@ -129,6 +130,7 @@ class Sketch : NSObject {
         //canvas.saveState()
         
         //canvas.renderAnimated(system: mediumKochSwirl, generation: 4)
+        canvas.renderAnimated(system: [mediumConstruction], generation: 6)
         canvas.renderAnimated(system: [mediumKochSwirl], generation: 2)
         
         //canvas.restoreState()

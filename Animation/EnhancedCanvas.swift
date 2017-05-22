@@ -130,7 +130,7 @@ public class EnhancedCanvas : Canvas {
             system.newY = (system.newY)+(system.y)
             //draw line according to formula
             print(system.x, system.y, system.newX, system.newY, system.currentAngle)
-            //self.translate(byX: system.currentLength, byY: 0)
+                        //self.translate(byX: system.currentLength, byY: 0)
             system.x = system.newX
             system.y = system.newY
             
