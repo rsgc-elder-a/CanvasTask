@@ -95,26 +95,56 @@ public class EnhancedCanvas : Canvas {
         switch character {
         case "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X",  "Y", "Z" :
             // Go forward while drawing a line
-            self.drawLine(fromX: 0, fromY: 0, toX: system.currentLength, toY: 0)
-            self.translate(byX: system.currentLength, byY: 0)
-        //print("foward")
+            //(pi/180)*deg
+            let customeCon : Float = (Float.pi)/(Float(180))
+            system.newX = cos(system.currentAngle*customeCon)*(system.currentLength)
+            
+            print("Legnth of line X \(cos(system.currentAngle)*customeCon)") //in rad
+            
+            system.newY = sin((system.currentAngle*customeCon))*(system.currentLength)
+            
+            print("Legnth of line Y \(sin(system.currentAngle))") //in rad
+            
+            system.newX = (system.newX)+(system.x)
+            system.newY = (system.newY)+(system.y)
+            //draw line according to formula
+            print(system.x, system.y, system.newX, system.newY, system.currentAngle)
+            self.drawLine(fromX: system.x, fromY: system.y, toX: system.newX, toY: system.newY)
+            //self.translate(byX: system.currentLength, byY: 0)
+            system.x = system.newX
+            system.y = system.newY
+            
         case "f":
-            // Go forward without drawing a line
-            self.translate(byX: system.currentLength, byY: 0)
+            // Go forward while drawing a line
+            //(pi/180)*deg
+            let customeCon : Float = (Float.pi)/(Float(180))
+            system.newX = cos(system.currentAngle*customeCon)*(system.currentLength)
+            
+            print("Legnth of line X \(cos(system.currentAngle)*customeCon)") //in rad
+            
+            system.newY = sin((system.currentAngle*customeCon))*(system.currentLength)
+            
+            print("Legnth of line Y \(sin(system.currentAngle))") //in rad
+            
+            system.newX = (system.newX)+(system.x)
+            system.newY = (system.newY)+(system.y)
+            //draw line according to formula
+            print(system.x, system.y, system.newX, system.newY, system.currentAngle)
+            //self.translate(byX: system.currentLength, byY: 0)
+            system.x = system.newX
+            system.y = system.newY
             
         case "+":
             // Turn left
-            self.rotate(by: system.angle)
-        //print("turn")
+            system.currentAngle = (system.currentAngle)+Float(system.angle)
+            
+            
         case "-":
             // Turn right
-            self.rotate(by: system.angle * -1)
-            //        case "[":
-            //            // Turn right
-            //            self.saveState()
-            //        case "]":
-            //            // Turn right
-        //            self.restoreState()
+            system.currentAngle = (system.currentAngle)-Float(system.angle)
+            //self.rotate(by: system.angle * -1)
+            
+            
         case "1":
             //
             guard let newColor = system.colors["1"] else {
