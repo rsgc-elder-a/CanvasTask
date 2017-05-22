@@ -40,7 +40,7 @@ public class EnhancedCanvas : Canvas {
         
     }
     
-    public func renderAnimated(system : VisualizedLindenmayerSystem, generation : Int) {
+    public func renderAnimated(system : [VisualizedLindenmayerSystem], generation : Int) { //change to array to render multiple??
         //self.saveState()
         
         // Verify that generation that was asked to be rendered actually exists

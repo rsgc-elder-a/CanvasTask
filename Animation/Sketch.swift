@@ -117,7 +117,7 @@ class Sketch : NSObject {
                                                          colors: [ "1" : Colour(hue: 200, saturaction: 80, brightness: 90), "2" : Colour(hue: 0, saturaction: 80, brightness: 90), "3" : Colour(hue: 300, saturaction: 80, brightness: 90) ] )
         
         // The frame rate can be adjusted; the default is 60 fps
-        canvas.framesPerSecond = 180
+        canvas.framesPerSecond = 60
         
     }
     
@@ -129,7 +129,7 @@ class Sketch : NSObject {
         //canvas.saveState()
         
         //canvas.renderAnimated(system: mediumKochSwirl, generation: 4)
-        canvas.render(system: mediumKochSwirl, generation: 2)
+        canvas.renderAnimated(system: mediumKochSwirl, generation: 2)
         
         //canvas.restoreState()
         
