@@ -41,39 +41,48 @@ public class EnhancedCanvas : Canvas {
     }
     
     public func renderAnimated(system : [VisualizedLindenmayerSystem], generation : Int) { //change to array to render multiple??
-        //self.saveState()
         
-        // Verify that generation that was asked to be rendered actually exists
-        var generation = generation
-        if generation > system.n {
-            generation = system.n
-        }
-        
-        // Things to do at start of L-system animation...
-        if system.animationPosition == 0 {
+        for subSys in system{
+            //self.saveState()
             
-            // Change the line length
-            system.currentLength = Float( Double(system.initialLength) / pow(Double(system.reduction), Double(generation)) )
+            // Verify that generation that was asked to be rendered actually exists
+            var generation = generation
+            if generation > subSys.n {
+                generation = subSys.n
+            }
             
-            // Move turtle to starting point
-            self.translate(byX: system.x, byY: system.y) // Move turtle to starting point
-        }
-        
-        // Don't run past end of the word
-        if system.animationPosition < system.word[generation].characters.count {
+            // Things to do at start of L-system animation...
+            if subSys.animationPosition == 0 {
+                
+                // Change the line length
+                subSys.currentLength = Float( Double(subSys.initialLength) / pow(Double(subSys.reduction), Double(generation)) )
+                
+                // Move turtle to starting point
+                self.translate(byX: subSys.x, byY: subSys.y) // Move turtle to starting point
+            }
             
-            // Get the index of the next character
-            let index = system.word[generation].index(system.word[generation].startIndex, offsetBy: system.animationPosition)
-            
-            // Get the next character
-            let c = system.word[generation][index]
-            
-            // Render the character
-            interpret(character: c, forThis: system)
-            
-            // Move to next character in word
-            system.animationPosition += 1
-            
+            // Don't run past end of the word
+            if subSys.animationPosition < subSys.word[generation].characters.count {
+                
+                // Get the index of the next character
+                let index = subSys.word[generation].index(subSys.word[generation].startIndex, offsetBy: subSys.animationPosition)
+                //this lines is real wierd
+                //print("Index: \(index)")
+                
+                // Get the next character
+                let c = subSys.word[generation][index]
+                
+                print("Charicter is: \(c)")
+                //self.saveState()
+                // Render the character
+                interpret(character: c, forThis: subSys)
+                //self.restoreState()
+                
+                // Move to next character in word
+                subSys.animationPosition += 1
+                
+            }
+            //self.restoreState()
         }
         
         //self.restoreState()

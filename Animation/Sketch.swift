@@ -129,7 +129,7 @@ class Sketch : NSObject {
         //canvas.saveState()
         
         //canvas.renderAnimated(system: mediumKochSwirl, generation: 4)
-        canvas.renderAnimated(system: mediumKochSwirl, generation: 2)
+        canvas.renderAnimated(system: [mediumKochSwirl], generation: 2)
         
         //canvas.restoreState()
         
