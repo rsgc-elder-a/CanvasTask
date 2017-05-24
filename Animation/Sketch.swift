@@ -110,7 +110,7 @@ class Sketch : NSObject {
         
         // Visualize this other Koch construction
         mediumConstruction = VisualizedLindenmayerSystem(with: kochConstruction,
-                                                         length: 500,
+                                                         length: 2000,
                                                          reduction: 3,
                                                          x: 100,
                                                          y: 100,
