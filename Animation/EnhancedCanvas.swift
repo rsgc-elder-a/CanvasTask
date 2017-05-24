@@ -72,7 +72,7 @@ public class EnhancedCanvas : Canvas {
                 // Get the next character
                 let c = subSys.word[generation][index]
                 
-                print("Charicter is: \(c)")
+                //print("Charicter is: \(c)")
                 //self.saveState()
                 // Render the character
                 interpret(character: c, forThis: subSys)
@@ -99,16 +99,16 @@ public class EnhancedCanvas : Canvas {
             let customeCon : Float = (Float.pi)/(Float(180))
             system.newX = cos(system.currentAngle*customeCon)*(system.currentLength)
             
-            print("Legnth of line X \(cos(system.currentAngle)*customeCon)") //in rad
+            //print("Legnth of line X \(cos(system.currentAngle)*customeCon)") //in rad
             
             system.newY = sin((system.currentAngle*customeCon))*(system.currentLength)
             
-            print("Legnth of line Y \(sin(system.currentAngle))") //in rad
+            //print("Legnth of line Y \(sin(system.currentAngle))") //in rad
             
             system.newX = (system.newX)+(system.x)
             system.newY = (system.newY)+(system.y)
             //draw line according to formula
-            print(system.x, system.y, system.newX, system.newY, system.currentAngle)
+            //print(system.x, system.y, system.newX, system.newY, system.currentAngle)
             self.drawLine(fromX: system.x, fromY: system.y, toX: system.newX, toY: system.newY)
             //self.translate(byX: system.currentLength, byY: 0)
             system.x = system.newX
@@ -120,16 +120,16 @@ public class EnhancedCanvas : Canvas {
             let customeCon : Float = (Float.pi)/(Float(180))
             system.newX = cos(system.currentAngle*customeCon)*(system.currentLength)
             
-            print("Legnth of line X \(cos(system.currentAngle)*customeCon)") //in rad
+            //print("Legnth of line X \(cos(system.currentAngle)*customeCon)") //in rad
             
             system.newY = sin((system.currentAngle*customeCon))*(system.currentLength)
             
-            print("Legnth of line Y \(sin(system.currentAngle))") //in rad
+            //print("Legnth of line Y \(sin(system.currentAngle))") //in rad
             
             system.newX = (system.newX)+(system.x)
             system.newY = (system.newY)+(system.y)
             //draw line according to formula
-            print(system.x, system.y, system.newX, system.newY, system.currentAngle)
+            //print(system.x, system.y, system.newX, system.newY, system.currentAngle)
                         //self.translate(byX: system.currentLength, byY: 0)
             system.x = system.newX
             system.y = system.newY
@@ -143,8 +143,16 @@ public class EnhancedCanvas : Canvas {
             // Turn right
             system.currentAngle = (system.currentAngle)-Float(system.angle)
             //self.rotate(by: system.angle * -1)
-            
-            
+        case "[":
+            //self.saveState() //for branching
+            system.branchStartX = system.x //should save where it started
+            system.branchStartY = system.y
+            system.branchAngle = system.currentAngle
+        case "]":
+            //self.restoreState()
+            system.x = system.branchStartX //then does back to it
+            system.y = system.branchStartY
+            system.currentAngle = system.branchAngle
         case "1":
             //
             guard let newColor = system.colors["1"] else {

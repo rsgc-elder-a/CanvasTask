@@ -10,6 +10,9 @@ import Foundation
 
 public class VisualizedLindenmayerSystem : LindenmayerSystem {
     
+    var branchStartX : Float //need to make a stack for branching
+    var branchStartY : Float
+    var branchAngle : Float
     
     var newX : Float
     var newY : Float
@@ -43,6 +46,9 @@ public class VisualizedLindenmayerSystem : LindenmayerSystem {
           
         self.newX = x
         self.newY = y
+        self.branchStartX = x
+        self.branchStartY = y
+        self.branchAngle = 0.0
         self.currentAngle = Float(direction)
         super.init(with: providedSystem)
         

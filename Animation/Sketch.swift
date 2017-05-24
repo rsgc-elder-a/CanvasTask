@@ -81,7 +81,7 @@ class Sketch : NSObject {
          direction: 10)
          */
         //var ruleA = Rules(predeceser: "F", secseceser: ["F+F", "F-F", "FF"], probSec: [1, 1, 1])
-        var ruleA = Rules(predeceser: "F", secseceser: ["2F+F-F-F+F"], probSec: [1])
+        let ruleA = Rules(predeceser: "F", secseceser: ["F+F-F-F+F"], probSec: [1])
         // Set up a Koch Swirl
         kochSwirl = LindenmayerSystem(angle: 90,
                                       axiom: "F",
@@ -99,20 +99,20 @@ class Sketch : NSObject {
         
         
         
-        // Set up another Koch construction
-        var rule1 = Rules(predeceser: "A", secseceser: ["+B-A-B+"], probSec: [1])
-        var rule2 = Rules(predeceser: "B", secseceser: ["-A+B+A-"], probSec: [1])
+        // Set up another Koch construction //F[−X][X]F[−X]+FX
+        let rule1 = Rules(predeceser: "X", secseceser: ["F[-X][X]F[-X]+FX"], probSec: [1])
+        let rule2 = Rules(predeceser: "F", secseceser: ["FF"], probSec: [1])
         
-        kochConstruction = LindenmayerSystem(angle: 60,
-                                             axiom: "A",
+        kochConstruction = LindenmayerSystem(angle: 25,
+                                             axiom: "X",
                                              rules: [rule1, rule2],
-                                             generations: 6)
+                                             generations: 2)
         
         // Visualize this other Koch construction
         mediumConstruction = VisualizedLindenmayerSystem(with: kochConstruction,
-                                                         length: 2000,
-                                                         reduction: 3,
-                                                         x: 100,
+                                                         length: 80,
+                                                         reduction: 2,
+                                                         x: 50,
                                                          y: 100,
                                                          direction: 0,
                                                          colors: [ "1" : Colour(hue: 200, saturaction: 80, brightness: 90), "2" : Colour(hue: 0, saturaction: 80, brightness: 90), "3" : Colour(hue: 300, saturaction: 80, brightness: 90) ] )
@@ -130,7 +130,7 @@ class Sketch : NSObject {
         //canvas.saveState()
         
         //canvas.renderAnimated(system: mediumKochSwirl, generation: 4)
-        canvas.renderAnimated(system: [mediumConstruction], generation: 6)
+        canvas.renderAnimated(system: [mediumConstruction], generation: 2)
         canvas.renderAnimated(system: [mediumKochSwirl], generation: 2)
         
         //canvas.restoreState()

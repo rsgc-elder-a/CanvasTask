@@ -71,7 +71,7 @@ public class LindenmayerSystem {
                     }
                     // [ means you need to do a save state
                     // ] means you need to do a restores stae to get back where you where
-                    if character == "-" || character == "+"
+                    if character == "-" || character == "+" || character == "[" || character == "]"
                     { //just add in word again if not working
                         newWord.append(character)
                         //print("Charicter appended \(character)")
