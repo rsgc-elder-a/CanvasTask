@@ -145,14 +145,18 @@ public class EnhancedCanvas : Canvas {
             //self.rotate(by: system.angle * -1)
         case "[":
             //self.saveState() //for branching
-            system.branchStartX = system.x //should save where it started
-            system.branchStartY = system.y
-            system.branchAngle = system.currentAngle
+            system.branchStartX.append(system.x) //should save where it started
+            system.branchStartY.append(system.y)
+            system.branchAngle.append(system.currentAngle)
+            
         case "]":
-            //self.restoreState()
-            system.x = system.branchStartX //then does back to it
-            system.y = system.branchStartY
-            system.currentAngle = system.branchAngle
+            
+            system.x = system.branchStartX.last! //then does back to it
+            system.y = system.branchStartY.last! //then does back to it
+            system.currentAngle = system.branchAngle.last! //then does back to it
+            system.branchStartX.removeLast()
+            system.branchStartY.removeLast()
+            system.branchAngle.removeLast()
         case "1":
             //
             guard let newColor = system.colors["1"] else {

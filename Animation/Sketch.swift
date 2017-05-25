@@ -106,7 +106,7 @@ class Sketch : NSObject {
         kochConstruction = LindenmayerSystem(angle: 25,
                                              axiom: "X",
                                              rules: [rule1, rule2],
-                                             generations: 2)
+                                             generations: 6)
         
         // Visualize this other Koch construction
         mediumConstruction = VisualizedLindenmayerSystem(with: kochConstruction,
@@ -130,7 +130,7 @@ class Sketch : NSObject {
         //canvas.saveState()
         
         //canvas.renderAnimated(system: mediumKochSwirl, generation: 4)
-        canvas.renderAnimated(system: [mediumConstruction], generation: 2)
+        canvas.renderAnimated(system: [mediumConstruction], generation: 6)
         canvas.renderAnimated(system: [mediumKochSwirl], generation: 2)
         
         //canvas.restoreState()
