@@ -14,6 +14,12 @@ class Sketch : NSObject {
     //       Therefore, the line immediately below must always be present.
     let canvas : EnhancedCanvas
     
+    
+    let pathToFile = "/Users/student/Documents/Grade 12/Software/FileReadingWritingExample/FileReadingWritingExample/l-systems.txt"
+    
+
+    
+    
     // Create the basic L-systems
     /*
      let kochSnowflake : LindenmayerSystem
@@ -38,6 +44,34 @@ class Sketch : NSObject {
         
         // Create a new canvas
         canvas = EnhancedCanvas(width: 500, height: 500)
+        
+        
+        // Open a file for reading and parse each line using the space character as a delimiter
+        guard let reader = LineReader(path: pathToFile) else {
+            print("Cannot open input file")
+            exit(0); // cannot open file
+        }
+        
+        // Create an empty array of type String
+        var components : [String] = []
+        
+        // Process each line of the input file
+        for (number, line) in reader.enumerated() {
+            
+            // DEBUG
+            print("Parsing line \(number)")
+            
+            // Build an array of each component from the file
+            components.append(contentsOf: line.components(separatedBy: " "))
+            
+        }
+        
+        // Now print the contents of the array created
+        print("======== contents of components array are =======")
+        for value in components {
+            print(value)
+        }
+        //print(components)
         /*
          // Set up a Koch snowflake
          kochSnowflake = LindenmayerSystem(angle: 60,
@@ -81,7 +115,7 @@ class Sketch : NSObject {
          direction: 10)
          */
         //var ruleA = Rules(predeceser: "F", secseceser: ["F+F", "F-F", "FF"], probSec: [1, 1, 1])
-        let ruleA = Rules(predeceser: "F", secseceser: ["F+F-F-F+F"], probSec: [1])
+        let ruleA = Rules(predeceser: "F", secseceser: ["2F+F-F-F+F"], probSec: [1])
         // Set up a Koch Swirl
         kochSwirl = LindenmayerSystem(angle: 90,
                                       axiom: "F",
@@ -100,17 +134,17 @@ class Sketch : NSObject {
         
         
         // Set up another Koch construction //F[−X][X]F[−X]+FX
-        let rule1 = Rules(predeceser: "X", secseceser: ["F[-X][X]F[-X]+FX"], probSec: [1])
-        let rule2 = Rules(predeceser: "F", secseceser: ["FF"], probSec: [1])
+        let rule1 = Rules(predeceser: "F", secseceser: ["F+[F-F]+F"], probSec: [1])
+        let rule2 = Rules(predeceser: "Y", secseceser: ["F-[F+F]-F"], probSec: [1])
         
-        kochConstruction = LindenmayerSystem(angle: 25,
-                                             axiom: "X",
+        kochConstruction = LindenmayerSystem(angle: 10,
+                                             axiom: "1F+Y+F",
                                              rules: [rule1, rule2],
                                              generations: 6)
         
         // Visualize this other Koch construction
         mediumConstruction = VisualizedLindenmayerSystem(with: kochConstruction,
-                                                         length: 80,
+                                                         length: 800,
                                                          reduction: 2,
                                                          x: 50,
                                                          y: 100,
@@ -118,7 +152,7 @@ class Sketch : NSObject {
                                                          colors: [ "1" : Colour(hue: 200, saturaction: 80, brightness: 90), "2" : Colour(hue: 0, saturaction: 80, brightness: 90), "3" : Colour(hue: 300, saturaction: 80, brightness: 90) ] )
         
         // The frame rate can be adjusted; the default is 60 fps
-        canvas.framesPerSecond = 60
+        canvas.framesPerSecond = 120
         
     }
     
