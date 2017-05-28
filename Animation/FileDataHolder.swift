@@ -28,14 +28,14 @@ public class DataHolder {
         
     }
     
-    //var allSystems : [KeyValues]
+    var allSystems : [KeyValues]
     
     public init (unParsedValue : [String]){
         self.unParsedValue = unParsedValue
-        //self.allSystems
+        self.allSystems = []
         print(parseDes(values: unParsedValue))
         //Parce makes a array of key values
-        
+        self.allSystems = parseDes(values: unParsedValue) //holes correct values
         
     }
     
