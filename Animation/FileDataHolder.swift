@@ -10,8 +10,59 @@ import Foundation
 
 public class DataHolder {
     
+    var unParsedValue : [String]
+    
+    
+    public struct KeyValues {
+        var description : String
+        var angleValue : Float
+        var axiom : String
+        var rules : Rules
+    }
     
     
     
+    public init (unParsedValue : [String]){
+        self.unParsedValue = unParsedValue
+        
+        parseDes(values: unParsedValue)
+        //Parce makes a array of key values
+        
+        
+    }
     
+    func parseDes(values : [String]) {
+        for singleValues in values {
+            //print(singleValues)
+            //print("Result: \(singleValues.commonPrefix(with: "angle"))")
+           // if (singleValues.commonPrefix(with: "angle") == "angle") { //detects when if find angle in a word
+            if (singleValues.contains("angle")) { //detects when if find angle in a word
+                var firstVal = singleValues
+                var secondVal = ""
+                var finalInt:Float
+                var splitVal = firstVal.components(separatedBy: ":")
+                for values in splitVal {
+                    if values.contains("\n"){
+                        //print(values.components(separatedBy: "\n"))
+                        
+                        secondVal = values.components(separatedBy: "\n")[0]
+
+                        if let finalIntValue = Float(secondVal)  {
+                            finalInt = finalIntValue
+                            print(finalInt)
+                            
+                        } else {
+                            
+                        }
+                        
+                        //guard let newColor = system.colors["2"] else {
+                         //   return
+                        //}
+                        
+                    }
+                }
+                
+            }
+        }
+    }
 }

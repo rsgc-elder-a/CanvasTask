@@ -69,8 +69,11 @@ class Sketch : NSObject {
         // Now print the contents of the array created
         print("======== contents of components array are =======")
         for value in components {
-            print(value)
+           // print(value)
         }
+        
+        var fileContents = DataHolder(unParsedValue: components)
+        
         //print(components)
         /*
          // Set up a Koch snowflake

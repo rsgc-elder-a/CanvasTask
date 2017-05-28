@@ -81,7 +81,7 @@ public class LindenmayerSystem {
                 
                 // Add the re-written word to the system
                 word.append(newWord)
-                print(word)
+                //print(word)
                 
             }
             
