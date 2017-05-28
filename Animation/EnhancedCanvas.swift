@@ -173,6 +173,7 @@ public class EnhancedCanvas : Canvas {
             
         case "3":
             //
+            
             guard let newColor = system.colors["3"] else {
                 return
             }
@@ -181,6 +182,7 @@ public class EnhancedCanvas : Canvas {
             
         default:
             // Do nothing for any another character in the word
+            
             break
         }
     }

@@ -39,6 +39,11 @@ class Sketch : NSObject {
     let mediumKochSwirl : VisualizedLindenmayerSystem
     let mediumConstruction : VisualizedLindenmayerSystem
     
+    let kochBase : LindenmayerSystem
+    let kochNew : VisualizedLindenmayerSystem
+    let kochNew1 : VisualizedLindenmayerSystem
+    let kochNew2 : VisualizedLindenmayerSystem
+    
     // This runs once, equivalent to setup() in Processing
     override init() {
         
@@ -134,7 +139,37 @@ class Sketch : NSObject {
                                                       direction: 0,
                                                       colors: [ "1" : Colour(hue: 200, saturaction: 80, brightness: 90), "2" : Colour(hue: 0, saturaction: 80, brightness: 90), "3" : Colour(hue: 300, saturaction: 80, brightness: 90) ])
         
+        kochBase = LindenmayerSystem(angle: Degrees(fileContents.allSystems[1].angleValue),
+                                      axiom: fileContents.allSystems[1].axiom,
+                                      rules: fileContents.allSystems[1].rules,
+                                      generations: fileContents.allSystems[1].generation)
         
+        // Visualize the Koch Swirl
+        kochNew = VisualizedLindenmayerSystem(with: kochBase,
+                                                      length: 300,
+                                                      reduction: 3,
+                                                      x: 150,
+                                                      y: 20,
+                                                      direction: 0,
+                                                      colors: [ "1" : Colour(hue: 200, saturaction: 80, brightness: 90), "2" : Colour(hue: 0, saturaction: 80, brightness: 90), "3" : Colour(hue: 300, saturaction: 80, brightness: 90) ])
+        
+        // Visualize the Koch Swirl
+        kochNew1 = VisualizedLindenmayerSystem(with: kochBase,
+                                              length: 300,
+                                              reduction: 3,
+                                              x: 100,
+                                              y: -50,
+                                              direction: 0,
+                                              colors: [ "1" : Colour(hue: 200, saturaction: 80, brightness: 90), "2" : Colour(hue: 0, saturaction: 80, brightness: 90), "3" : Colour(hue: 300, saturaction: 80, brightness: 90) ])
+        
+        // Visualize the Koch Swirl
+        kochNew2 = VisualizedLindenmayerSystem(with: kochBase,
+                                              length: 300,
+                                              reduction: 3,
+                                              x: 50,
+                                              y: -100,
+                                              direction: 0,
+                                              colors: [ "1" : Colour(hue: 200, saturaction: 80, brightness: 90), "2" : Colour(hue: 0, saturaction: 80, brightness: 90), "3" : Colour(hue: 300, saturaction: 80, brightness: 90) ])
         
         // Set up another Koch construction //F[−X][X]F[−X]+FX
         let rule1 = Rules(predeceser: "F", secseceser: ["F+[F-F]+F"], probSec: [1])
@@ -162,18 +197,14 @@ class Sketch : NSObject {
     // Runs repeatedly, equivalent to draw() in Processing
     func draw() {
         
-        // Render the current system
-        
-        //canvas.saveState()
-        
-        //canvas.renderAnimated(system: mediumKochSwirl, generation: 4)
+
         canvas.renderAnimated(system: [mediumConstruction], generation: 4)
         canvas.renderAnimated(system: [mediumKochSwirl], generation: 3)
+        canvas.renderAnimated(system: [kochNew], generation: 3)
+        canvas.renderAnimated(system: [kochNew1], generation: 3)
+        canvas.renderAnimated(system: [kochNew2], generation: 3)
         
-        //canvas.restoreState()
-        
-        //canvas.render(system: mediumConstruction, generation: 3)
-        //canvas.renderAnimated(system: mediumConstruction, generation: 3)
+
     }
     
     // Respond to the mouseDown event
