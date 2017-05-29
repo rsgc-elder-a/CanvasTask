@@ -139,35 +139,38 @@ class Sketch : NSObject {
                                                       direction: 0,
                                                       colors: [ "1" : Colour(hue: 200, saturaction: 80, brightness: 90), "2" : Colour(hue: 0, saturaction: 80, brightness: 90), "3" : Colour(hue: 300, saturaction: 80, brightness: 90) ])
         
-        kochBase = LindenmayerSystem(angle: Degrees(fileContents.allSystems[1].angleValue),
-                                      axiom: fileContents.allSystems[1].axiom,
-                                      rules: fileContents.allSystems[1].rules,
-                                      generations: fileContents.allSystems[1].generation)
+        let ruleA = Rules(predeceser: "Y", secseceser: ["3-FX-Y"], probSec: [1])
+        let ruleB = Rules(predeceser: "X", secseceser: ["X+YF+"], probSec: [1])
+        
+        kochBase = LindenmayerSystem(angle: Degrees(90),
+                                      axiom: "FX",
+                                      rules: [ruleA, ruleB],
+                                      generations: 8)
         
         // Visualize the Koch Swirl
         kochNew = VisualizedLindenmayerSystem(with: kochBase,
-                                                      length: 300,
-                                                      reduction: 3,
-                                                      x: 150,
+                                                      length: 2000,
+                                                      reduction: 2,
+                                                      x: 100,
                                                       y: 20,
-                                                      direction: 0,
+                                                      direction: 270,
                                                       colors: [ "1" : Colour(hue: 200, saturaction: 80, brightness: 90), "2" : Colour(hue: 0, saturaction: 80, brightness: 90), "3" : Colour(hue: 300, saturaction: 80, brightness: 90) ])
         
         // Visualize the Koch Swirl
         kochNew1 = VisualizedLindenmayerSystem(with: kochBase,
-                                              length: 300,
-                                              reduction: 3,
-                                              x: 100,
-                                              y: -50,
-                                              direction: 0,
+                                              length: 2000,
+                                              reduction: 2,
+                                              x: 0,
+                                              y: 0,
+                                              direction: 270,
                                               colors: [ "1" : Colour(hue: 200, saturaction: 80, brightness: 90), "2" : Colour(hue: 0, saturaction: 80, brightness: 90), "3" : Colour(hue: 300, saturaction: 80, brightness: 90) ])
         
         // Visualize the Koch Swirl
         kochNew2 = VisualizedLindenmayerSystem(with: kochBase,
-                                              length: 300,
-                                              reduction: 3,
-                                              x: 50,
-                                              y: -100,
+                                              length: 2000,
+                                              reduction: 2,
+                                              x: 0,
+                                              y: -50,
                                               direction: 0,
                                               colors: [ "1" : Colour(hue: 200, saturaction: 80, brightness: 90), "2" : Colour(hue: 0, saturaction: 80, brightness: 90), "3" : Colour(hue: 300, saturaction: 80, brightness: 90) ])
         
@@ -200,9 +203,9 @@ class Sketch : NSObject {
 
         canvas.renderAnimated(system: [mediumConstruction], generation: 4)
         canvas.renderAnimated(system: [mediumKochSwirl], generation: 3)
-        canvas.renderAnimated(system: [kochNew], generation: 3)
-        canvas.renderAnimated(system: [kochNew1], generation: 3)
-        canvas.renderAnimated(system: [kochNew2], generation: 3)
+        canvas.renderAnimated(system: [kochNew], generation: 8)
+        canvas.renderAnimated(system: [kochNew1], generation: 8)
+        canvas.renderAnimated(system: [kochNew2], generation: 8)
         
 
     }

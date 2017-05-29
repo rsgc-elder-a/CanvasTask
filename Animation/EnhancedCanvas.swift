@@ -22,13 +22,16 @@ public class EnhancedCanvas : Canvas {
         system.currentLength = Float( Double(system.initialLength) / pow(Double(system.reduction), Double(generation)) )
         
         // Render the word
-        self.saveState()
-        self.translate(byX: system.x, byY: system.y) // Move turtle to starting point
+        //self.saveState()
+        
+        //self.translate(byX: system.x, byY: system.y) // Move turtle to starting point
+         //should work now
+        
         for c in system.word[generation].characters {
             interpret(character: c, forThis: system)
         }
         
-        self.restoreState()
+        //self.restoreState()
         //self.restoreState()
         
         
@@ -44,7 +47,7 @@ public class EnhancedCanvas : Canvas {
         
         for subSys in system{
             //self.saveState()
-            
+            self.lineColor = subSys.currentColor
             // Verify that generation that was asked to be rendered actually exists
             var generation = generation
             if generation > subSys.n {
@@ -163,6 +166,7 @@ public class EnhancedCanvas : Canvas {
                 return
             }
             self.lineColor = Color(hue: newColor.hue, saturation: newColor.saturaction, brightness: newColor.brightness, alpha: 100)
+            system.currentColor = self.lineColor
             
         case "2":
             //
@@ -170,7 +174,7 @@ public class EnhancedCanvas : Canvas {
                 return
             }
             self.lineColor = Color(hue: newColor.hue, saturation: newColor.saturaction, brightness: newColor.brightness, alpha: 100)
-            
+            system.currentColor = self.lineColor
         case "3":
             //
             
@@ -178,7 +182,7 @@ public class EnhancedCanvas : Canvas {
                 return
             }
             self.lineColor = Color(hue: newColor.hue, saturation: newColor.saturaction, brightness: newColor.brightness, alpha: 100)
-            
+            system.currentColor = self.lineColor
             
         default:
             // Do nothing for any another character in the word
